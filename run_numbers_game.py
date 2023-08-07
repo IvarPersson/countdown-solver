@@ -1,9 +1,16 @@
+"""
+Run module for the games
+"""
 import argparse
 
 from countdown import CountdownCalculator
+from word_game import WordGameCalculator
 
 
 def main():
+    """
+    Main method to control the two games
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument("-n", "--numbers", help="The numbers used in the numbers round")
     parser.add_argument("-t", "--target", help="Target in the numbers round")
@@ -12,11 +19,11 @@ def main():
         "--letters",
         help="Letters for the word round, cannot be used at same time as --numbers or --target",
     )
-    g = parser.add_mutually_exclusive_group()
-    g.add_argument(
+    grp = parser.add_mutually_exclusive_group()
+    grp.add_argument(
         "-dn", "--demo-nbr", "-Provides a demo of the numbers game", action="store_true"
     )
-    g.add_argument(
+    grp.add_argument(
         "-dw", "--demo-wrd", "-Provides a demo of the word game.", action="store_true"
     )
     args = parser.parse_args()
@@ -26,6 +33,7 @@ def main():
     letters = args.letters
     demo_nbr = args.demo_nbr
     demo_wrd = args.demo_wrd
+    # TODO: Add asserts on correct type of input (ints and letters respectively)
     if not (demo_nbr or demo_wrd):
         assert (numbers is None and target is None) or (
             numbers is not None and target is not None
