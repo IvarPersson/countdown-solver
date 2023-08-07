@@ -110,7 +110,7 @@ class WordGameCalculator:
         """
         Prints the true words of the letter list
         """
-        next_break = 0
+        true_words_dict = {}
         if isinstance(letters, str):
             letters = list(letters)
         letters = list(letters)
@@ -123,14 +123,5 @@ class WordGameCalculator:
                     "".join(tup) for tup in list(itertools.permutations(letter_comb))
                 ]
             true_words = self._test_words(set(words))  # type: ignore
-            if len(true_words) == 0:
-                print(f"There are no words of length {nbr_letters}")
-            else:
-                print(f"There are {len(true_words)} word(s) of length {nbr_letters}:")
-                for t_w in true_words:
-                    print(t_w)
-            print("----------")
-            if next_break:
-                break
-            if len(true_words) != 0:
-                next_break += 1
+            true_words_dict[f"{str(nbr_letters)}"] = true_words
+        return true_words_dict
