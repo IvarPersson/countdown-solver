@@ -78,8 +78,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-# stack = solutions[f"{target}"][1]
-# tick = solutions[f"{target}"][2]
-# print(f"It can be solved in {tick} ways, shortest solution:")
-# print(self._stack_to_string(stack))
