@@ -104,7 +104,7 @@ class CountdownCalculator:
 
         if f"{target}" in solutions:
             return solutions[f"{target}"]
-        # TODO, choose best solution and return its sum
+        # TODO: choose best solution and return its sum
         return [0]
 
     def stack_to_string(self, stack: list):
