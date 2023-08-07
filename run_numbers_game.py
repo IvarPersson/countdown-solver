@@ -24,7 +24,7 @@ def main():
     numbers = args.numbers
     target = args.target
     letters = args.letters
-    demo_nbr = True  # args.demo_nbr
+    demo_nbr = args.demo_nbr
     demo_wrd = args.demo_wrd
     if not (demo_nbr or demo_wrd):
         assert (numbers is None and target is None) or (
@@ -49,6 +49,23 @@ def main():
             print("_____________________")
 
     # Word game
+    if demo_wrd or letters is not None:
+        word_calc = WordGameCalculator()
+        if demo_wrd:
+            print("Demo of the word game, generating problem and solution")
+        else:
+            all_true_words = word_calc.generate_true_words(letters)
+            for nbr_letters in range(9, 2, -1):
+                true_words = all_true_words[f"{str(nbr_letters)}"]
+                if len(true_words) == 0:
+                    print(f"There are no words of length {nbr_letters}")
+                else:
+                    print(
+                        f"There are {len(true_words)} word(s) of length {nbr_letters}:"
+                    )
+                    for t_w in true_words:
+                        print(t_w)
+                print("----------")
 
 
 if __name__ == "__main__":
