@@ -55,6 +55,16 @@ def main():
             print(f"Target: {target}\nNumbers: {numbers}\nSolution: {solution}")
             print(f"Can be solved in {sol_tick} ways.")
             print("_____________________")
+        else:
+            solution = cd_calc.find_solution(numbers, target)
+            if solution == [0]:
+                print("No solution exists")
+            else:
+                sol_tick = solution[2]
+                solution = cd_calc.stack_to_string(solution[1])
+                print(f"Solution: {solution}")
+                print(f"Can be solved in {sol_tick} ways.")
+                print("_____________________")
 
     # Word game
     if demo_wrd or letters is not None:
