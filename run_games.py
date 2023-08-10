@@ -4,8 +4,8 @@ Run module for the games
 import argparse
 import ast
 
-from countdown import CountdownCalculator
-from word_game import WordGameCalculator
+from solvers.countdown import CountdownCalculator
+from solvers.word_game import WordGameCalculator
 
 
 def main():
