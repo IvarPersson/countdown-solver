@@ -56,51 +56,65 @@ def main():
 
     # Numbers game
     if demo_nbr or numbers is not None:
-        cd_calc = CountdownCalculator()
-        if demo_nbr:
-            print("Demo of the numbers game, generating problem and solution")
-            numbers, target, solution = cd_calc.make_random_solution()
-            sol_tick = solution[2]
-            solution = cd_calc.stack_to_string(solution[1])
-            print(f"Target: {target}\nNumbers: {numbers}\nSolution: {solution}")
-            print(f"Can be solved in {sol_tick} ways.")
-            print("_____________________")
-        else:
-            solution = cd_calc.find_solution(numbers, target)
-            if solution == [0]:
-                print("No solution exists")
-            else:
-                sol_tick = solution[2]
-                solution = cd_calc.stack_to_string(solution[1])
-                print(f"Solution: {solution}")
-                print(f"Can be solved in {sol_tick} ways.")
-                print("_____________________")
+        do_numbers_game(numbers, target, demo_nbr)
 
     # Word game
     if demo_wrd or letters is not None:
-        word_calc = WordGameCalculator()
-        if demo_wrd:
-            print("Demo of the word game, generating problem and solution")
-            tmp, tmp2 = word_calc.generate_example_problem()
-            all_true_words = tmp
-            letters = tmp2
+        do_word_game(letters, demo_wrd)
+
+
+def do_numbers_game(numbers: list, target: int, demo_nbr: bool = False):
+    """
+    Do the numbers game
+    """
+    cd_calc = CountdownCalculator()
+    if demo_nbr:
+        print("Demo of the numbers game, generating problem and solution")
+        numbers, target, solution = cd_calc.make_random_solution()
+        sol_tick = solution[2]
+        solution = cd_calc.stack_to_string(solution[1])
+        print(f"Target: {target}\nNumbers: {numbers}\nSolution: {solution}")
+        print(f"Can be solved in {sol_tick} ways.")
+        print("_____________________")
+    else:
+        solution = cd_calc.find_solution(numbers, target)
+        if solution == [0]:
+            print("No solution exists")
         else:
-            all_true_words = word_calc.generate_true_words(letters)
-        print(f"Letter given: {letters}")
-        break_flag = 0
-        for nbr_letters in range(9, 2, -1):
-            true_words = all_true_words[f"{str(nbr_letters)}"]
-            if len(true_words) == 0:
-                print(f"There are no words of length {nbr_letters}")
-            else:
-                print(f"There are {len(true_words)} word(s) of length {nbr_letters}:")
-                for t_w in true_words:
-                    print(t_w)
-                if break_flag:
-                    break
-                if len(true_words):
-                    break_flag = 1
-            print("----------")
+            sol_tick = solution[2]
+            solution = cd_calc.stack_to_string(solution[1])
+            print(f"Solution: {solution}")
+            print(f"Can be solved in {sol_tick} ways.")
+            print("_____________________")
+
+
+def do_word_game(letters, demo_wrd):
+    """
+    Do the word game
+    """
+    word_calc = WordGameCalculator()
+    if demo_wrd:
+        print("Demo of the word game, generating problem and solution")
+        tmp, tmp2 = word_calc.generate_example_problem()
+        all_true_words = tmp
+        letters = tmp2
+    else:
+        all_true_words = word_calc.generate_true_words(letters)
+    print(f"Letter given: {letters}")
+    break_flag = 0
+    for nbr_letters in range(9, 2, -1):
+        true_words = all_true_words[f"{str(nbr_letters)}"]
+        if len(true_words) == 0:
+            print(f"There are no words of length {nbr_letters}")
+        else:
+            print(f"There are {len(true_words)} word(s) of length {nbr_letters}:")
+            for t_w in true_words:
+                print(t_w)
+            if break_flag:
+                break
+            if len(true_words):
+                break_flag = 1
+        print("----------")
 
 
 if __name__ == "__main__":
