@@ -4,6 +4,7 @@ Word generator used in the word game in the british TV-show Countdown
 
 import itertools
 import pickle
+import random
 from typing import Union
 
 
@@ -105,6 +106,17 @@ class WordGameCalculator:
             f"Successfully read: {len(dictionary_dict.keys())} words from the dictionary."
         )
         print(f"{trimmed} words were removed due to reasons")
+
+    def generate_example_problem(self):
+        """
+        Generates a random letter set and solves it. Used for illustration purposes or debugging.
+        """
+        vowels = "aeiouy"
+        consonats = "bcdfghljklmnpqrstvxz"
+        nbr_vowels = random.randint(2, 5)
+        letters = random.sample(vowels, nbr_vowels)
+        letters += random.sample(consonats, 9 - nbr_vowels)
+        return self.generate_true_words(letters), letters
 
     def generate_true_words(self, letters: Union[list, str]):
         """
