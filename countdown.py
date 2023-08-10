@@ -121,7 +121,6 @@ class CountdownCalculator:
         assert target > 100, "Target must be bigger than 100."
         assert target < 1000, "Target must be smaller than 1000."
         assert len(numbers) == 6, "6 numbers must be given"
-        print(f"Solving for target: {target} and numbers: {numbers}")
         return self._solve(target, numbers)
 
     def make_random_solution(self):

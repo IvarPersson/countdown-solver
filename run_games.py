@@ -32,7 +32,7 @@ def main():
     target = args.target
     letters = args.letters
     demo_nbr = args.demo_nbr
-    demo_wrd = args.demo_wrd
+    demo_wrd = 1  # args.demo_wrd
     # TODO: Add asserts on correct type of input (ints and letters respectively)
     if not (demo_nbr or demo_wrd):
         assert (numbers is None and target is None) or (
@@ -76,15 +76,20 @@ def main():
             letters = tmp2
         else:
             all_true_words = word_calc.generate_true_words(letters)
+        print(f"Letter given: {letters}")
+        break_flag = 0
         for nbr_letters in range(9, 2, -1):
             true_words = all_true_words[f"{str(nbr_letters)}"]
-            print(f"Letter given: {letters}")
             if len(true_words) == 0:
                 print(f"There are no words of length {nbr_letters}")
             else:
                 print(f"There are {len(true_words)} word(s) of length {nbr_letters}:")
                 for t_w in true_words:
                     print(t_w)
+                if break_flag:
+                    break
+                if len(true_words):
+                    break_flag = 1
             print("----------")
 
 
