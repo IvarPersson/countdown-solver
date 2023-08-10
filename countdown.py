@@ -81,7 +81,7 @@ class CountdownCalculator:
                 stack.append(val)
                 remaining = nums[:idx] + nums[idx + 1 :]
                 res, length = self._evaluate(stack)
-                if abs(res - target) <= 0:
+                if abs(res - target) <= 10:
                     if f"{res}" in solutions:
                         solutions[f"{res}"][2] = solutions[f"{res}"][2] + 1
                         if solutions[f"{res}"][0] > length:
