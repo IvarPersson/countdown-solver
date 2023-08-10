@@ -2,6 +2,7 @@
 Run module for the games
 """
 import argparse
+import ast
 
 from countdown import CountdownCalculator
 from word_game import WordGameCalculator
@@ -32,14 +33,23 @@ def main():
     target = args.target
     letters = args.letters
     demo_nbr = args.demo_nbr
-    demo_wrd = 1  # args.demo_wrd
-    # TODO: Add asserts on correct type of input (ints and letters respectively)
+    demo_wrd = args.demo_wrd
     if not (demo_nbr or demo_wrd):
         assert (numbers is None and target is None) or (
             numbers is not None and target is not None
         ), "Both numbers and target must be set for numbers game. None can be set for words game"
         if numbers is not None:
             assert letters is None, "You must provide letters in the word game"
+            try:
+                numbers = ast.literal_eval(numbers)
+            except ValueError as _:
+                print("The numbers must be ints in a list")
+                return
+            try:
+                target = int(target)
+            except ValueError as _:
+                print("Target must be an int")
+                return
         else:
             assert letters is not None, "You must provide letters in the word game"
             assert len(letters) == 9, "The number of letters must be 9."
