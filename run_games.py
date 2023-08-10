@@ -12,20 +12,40 @@ def main():
     """
     Main method to control the two games
     """
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-n", "--numbers", help="The numbers used in the numbers round")
+    parser = argparse.ArgumentParser(
+        description="This is the countdown solver for both the numbers game and the word game. \
+            Use the flags for the demos to generate example solutions in the respective games. \
+            Input both numbers and target to run the numbers game and input letters for the \
+            word game.",
+        epilog="NOTE: The current dictionary is not comple, a new one will arrive. The numbers \
+            round will only be solved with sequatial evaluations, solutions such as \
+            (3 + 7) / (4 - 2) will not be generated. This will be added later.",
+    )
+    parser.add_argument(
+        "-n",
+        "--numbers",
+        help="The numbers used in the numbers round. Must be \
+                        an array of ints, e.g. [50,25,4,6,8,10]",
+    )
     parser.add_argument("-t", "--target", help="Target in the numbers round")
     parser.add_argument(
         "-l",
         "--letters",
-        help="Letters for the word round, cannot be used at same time as --numbers or --target",
+        help="Letters for the word round, cannot be used at same time as --numbers or --target. \
+            Must be supplied as one continous string, e.g. dghiabewc",
     )
     grp = parser.add_mutually_exclusive_group()
     grp.add_argument(
-        "-dn", "--demo-nbr", "-Provides a demo of the numbers game", action="store_true"
+        "-dn",
+        "--demo-nbr",
+        help="-Provides a demo of the numbers game. Generates a problem and solves it",
+        action="store_true",
     )
     grp.add_argument(
-        "-dw", "--demo-wrd", "-Provides a demo of the word game.", action="store_true"
+        "-dw",
+        "--demo-wrd",
+        help="-Provides a demo of the word game. Generates a problem and solves it",
+        action="store_true",
     )
     args = parser.parse_args()
 
